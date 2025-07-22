@@ -1,12 +1,19 @@
-const btnNo = document.querySelector("#btn-random")
+const btnNo = document.getElementById("btn-no");
 
-function moverAleatoriamente(btn) {
-    btn.style.position = "absolute";
-    btn.style.fontWeight = "bolder";
-    btn.style.top = Math.floor(Math.random() * 90 + 5) + "%"
-    btn.style.left = Math.floor(Math.random() * 90 + 5) + "%"
+function moverAleatoriamente(button) {
+  const container = document.querySelector(".container");
+  const rect = container.getBoundingClientRect();
+  const offset = 100;
+
+  const randomX = Math.floor(Math.random() * (rect.width - offset));
+  const randomY = Math.floor(Math.random() * (rect.height - offset));
+
+  button.style.position = "absolute";
+  button.style.left = `${randomX}px`;
+  button.style.top = `${randomY}px`;
 }
 
-btnNo.addEventListener("mouseenter", function (e) {
-    moverAleatoriamente(e.target)
-})
+btnNo.addEventListener("mouseenter", () => {
+  moverAleatoriamente(btnNo);
+});
+
